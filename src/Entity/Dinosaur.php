@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Dinosaur
 {
 
+    const LARGE = 10;
+    const HUGE = 30;
     private string $genus;
     private bool $isCarnivorous;
     public function __construct(string $genus = 'Unknown', bool $isCarnivorous = false)
@@ -63,6 +65,11 @@ class Dinosaur
     public function setGenus(string $genus): void
     {
         $this->genus = $genus;
+    }
+
+    public function isCarnivorous()
+    {
+        return $this->isCarnivorous;
     }
 
 }
