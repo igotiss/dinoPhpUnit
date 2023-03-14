@@ -4,6 +4,7 @@ namespace App\Tests\Entity;
 
 use App\Entity\Dinosaur;
 use App\Entity\Enclosure;
+use App\Exceptions\DinosaursAreRunningRampantException;
 use App\Exceptions\NotABuffetException;
 use PHPUnit\Framework\TestCase;
 
@@ -40,9 +41,16 @@ class EnclosureTest extends TestCase
         $enclosure = new Enclosure();
         $enclosure->addDinosaurs(new Dinosaur('Velociraptor', true));
         $enclosure->addDinosaurs(new Dinosaur());
+    }
 
+    public function testItDoesAllowToAddDinosaursToUnsecuredEnclosures()
+    {
+        $enclosure = new Enclosure();
 
+        $this->expectException(DinosaursAreRunningRampantException::class);
+        $this->expectExceptionMessage('Are you craaazy ?!?');
 
+        $enclosure->addDinosaurs(new Dinosaur());
     }
 
 

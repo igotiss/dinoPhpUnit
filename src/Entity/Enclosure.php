@@ -20,7 +20,9 @@ class Enclosure
      * @var Collection
      * @ORM\OneToMany(targetEntity="App\Entity\Dinosaur", mappedBy="enclosure", cascade={"persist"})
      */
-    private $dinosaurs;
+    private Collection $dinosaurs;
+
+    private $securities;
     public function __construct()
     {
         $this->dinosaurs = new ArrayCollection();
